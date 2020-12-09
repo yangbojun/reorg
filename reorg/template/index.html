@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>碎片整理</title>
+</head>
+<body>
+<form action="/" method="post">
+    <h2>配置信息:</h2>
+    <label>host</label>
+    <input name="ip" value="{{ .IP }}"/> <br/>
+    <label>port</label>
+    <input name="port" value="{{ .Port }}"/> <br/>
+    <label>库名</label>
+    <input name="dbname" value="{{ .Dbname }}"/> <br/>
+    <label>账户</label>
+    <input name="user" value="{{ .User }}"/> <br/>
+    <label>密码</label>
+    <input name="passwd" type="password" value="{{ .Password }}"/> {{ .Error }} <br/>
+    <label>碎片整理模式:</label> <br/>
+    <input name="mod" type="radio" value="1" {{ .IsCompact }}/> reorg compact 表 + reorg rebuild 索引(不易引起锁阻塞,速度较快,建议选择) <br/>
+    <input name="mod" type="radio" value="0" {{ .IsRebuild }}/> reorg rebuild 表(容易造成锁阻塞,速度很慢,需要库有较大空闲空间,碎片整理效果较好) <br/>
+    <label>并发</label>
+    <input name="parrel" value="{{ .Parrel }}"/> {{ .ParrelInfo }} <br/>
+    <input type="submit" value="开始碎片整理"/>
+</form>
+</body>
+</html>
